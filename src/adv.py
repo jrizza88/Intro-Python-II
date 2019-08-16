@@ -35,22 +35,28 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+#instantiate the item class
+rock = Item('rock', 'Just a rock.. or is it?!')
+crown = Item('crown', 'It\'s a golden crown!')
+magic_wand = Item('magic_wand', 'A magic wand appeared!')
+
+rock = room['overlook']
 #
 # Main
 #
-
+print(f'check items: {crown}')
 # Make a new player object that is currently in the 'outside' room.
-player = Player(input('select name!'), room['outside'])
+player = Player(input('select name: '), room['outside'])
 # valid_directions = ['n', 's', 'e', 'w']
 print("Welcome to J's Room Search Adventure! (Version 1)")
 print('Current user: ', player.name)
 
-
+print(player.current_room.name)
+#we want to print the items in the room
 
 #       
 # * Prints the current room name
 while True: 
-   # print(f"You are currently in {player.current_room.name}. Details? {player.current_room.description}")
     player.show_room()
     selection = input("Select a room to enter! ")
     try: 

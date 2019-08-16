@@ -6,7 +6,13 @@ class Item:
 # can help give info about the class, extra info that is useful to present
 # i.e. 
     def __repr__(self):
-        return f" (name info):{self.name}, (descrip info):{self.description}"
+        return f"(name info):{self.name}, (description info):{self.description}"
 # str is usually meant for consumer 
     def __str__(self):
-        return f"{self.name}"
+        return f"{self.name}, {self.description}"
+
+    def pickup_item(self):
+        print(f'You picked up {self.name}, which is {self.description}')
+
+    def drop_item(self):
+        print(f'You dropped item {self.name}!')

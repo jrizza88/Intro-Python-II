@@ -16,4 +16,22 @@ class Room:
 
     def __str__(self):
         return str(self.__dict__)
+    
+    def add_item(self, item):
+        self.items.append(item)
+
+    def drop_item(self, item):
+        self.items.append(item)
+
+    def items_list(self):
+        return ', '.join([str(i) for i in self.items])
+
+    def check_item(self, item):
+        for i in self.items:
+            if i != item: 
+                print(f'There are no items')               
+                return False
+            else:
+                print(f'Checking items: {self.items}')
+                return True
 
