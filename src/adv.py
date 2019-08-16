@@ -1,5 +1,6 @@
 from room import Room
 from player import Player
+from item import Item
 
 # Declare all the rooms
 
@@ -49,7 +50,8 @@ print('Current user: ', player.name)
 #       
 # * Prints the current room name
 while True: 
-    print(f"You are currently in {player.current_room.name}. Details? {player.current_room.description}")
+   # print(f"You are currently in {player.current_room.name}. Details? {player.current_room.description}")
+    player.show_room()
     selection = input("Select a room to enter! ")
     try: 
         if selection == "q":
@@ -68,9 +70,12 @@ while True:
         elif selection == "w":
             if player.current_room.w_to is not None:
                 player.current_room = player.current_room.w_to
+            else:
+                print('not sure where you are, try a different direction')
         elif selection == "e":
             if player.current_room.e_to is not None:
                 player.current_room = player.current_room.e_to
+                print('not sure where you are, try a different direction')
         else: 
             print ("You can only select 'n', 's','w', 'e'. Press 'q' to quit ")
 
