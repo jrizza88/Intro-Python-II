@@ -2,25 +2,38 @@
 # currently.
 
 class Player: 
-    def __init__(self, name, current_room):
+    def __init__(self, name, current_room, items=None):
         self.name = name
         self.current_room = current_room
+        self.health = 150
+        if items is None:
+            self.items = []
+        else:
+            self.items = items
 
     def __str__(self):
         return f'{self.name}, {self.current_room}'
-
-    # def room_direction(self, direction):
-    #     self.direction = direction
-    #     if direction == "n":
-    #         self.current_room = self.current_room.n_to        
-    #     elif direction == "s":
-    #         self.current_room = self.current_room.s_to
-    #     elif direction == "e":
-    #         self.current_room = self.current_room.e_to
-    #     elif direction == "w":
-    #         self.current_room = self.current_room.w_to
-    #     else:
-    #         print('Mission completed, thanks for playing!')
         
     def show_room(self):
-        print (f'{self.current_room.name} is currently in room {self.current_room.description}')
+        print (f'{self.name} is in room {self.current_room.name}. Description: {self.current_room.description}')
+
+    def add_item(self):
+        self.items.append(self.current_room.items)
+        self.items.remove(self.current_room.drop_item)
+        print(f'you have picked up {self.current_room.items}')
+
+    def drop_item(self):
+        self.items.remove(self.current_room.items)
+        print(f'you have dropped {self.current_room.items}')
+
+    def health_meter(self):
+        print(f'{self.name}\'s health is: {self.health}')
+
+    def player_inventory(self):
+        if len(self.items) != 0:
+            ', '.join([str(i) for i in self.items])
+            print(f' You have:  {self.items}')
+            # return True
+        else:
+            print(f'{self.name} has no items! Find some!')
+            # return False

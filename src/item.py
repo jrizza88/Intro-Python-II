@@ -11,8 +11,31 @@ class Item:
     def __str__(self):
         return f"{self.name}, {self.description}"
 
-    def pickup_item(self):
+    def on_take(self):
         print(f'You picked up {self.name}, which is {self.description}')
 
     def drop_item(self):
         print(f'You dropped item {self.name}!')
+    
+    def inventory(self, item):
+        self.item = item
+        for i in self.name:
+            if i == item:
+                ', '.join(self.name)
+                print(f'{item}')
+
+    # def create_item(self, player):
+    #     self.player = player(input('What did you find? '), {self.name})
+    #     return player
+
+class Potion(Item):
+    def __init__(self, name, description, color, heal):
+        super().__init__(name, description)
+        self.color = color
+        self.heal = heal
+
+    def on_take(self, player):
+        player.health += self.heal
+
+    
+

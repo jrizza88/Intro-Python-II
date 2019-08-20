@@ -21,10 +21,21 @@ class Room:
         self.items.append(item)
 
     def drop_item(self, item):
-        self.items.append(item)
+        self.items.remove(item)
+
+    def inventory_quantity(self):
+        # ', '.join([str(i) for i in self.items])
+        if len(self.items) > 1:
+            print(f'{self.name} has an inventory of: {len(self.items)} items.')
+        elif len(self.items) == 1:
+            print(f'{self.name} has an inventory of: {len(self.items)} item.')
+        else:
+            print(f'{self.name} has no items')
 
     def items_list(self):
-        return ', '.join([str(i) for i in self.items])
+        items_in_room = ', '.join(
+            [str(i) for i in self.items])
+        print(f'Here are the items in this room: {items_in_room}.')
 
     def check_item(self, item):
         for i in self.items:
@@ -35,3 +46,5 @@ class Room:
                 print(f'Checking items: {self.items}')
                 return True
 
+    # def inventory(self):
+    #     print(f'Here are the items listed in {self.name}: {self.items}')
