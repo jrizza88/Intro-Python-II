@@ -24,10 +24,6 @@ class Item:
                 ', '.join(self.name)
                 print(f'{item}')
 
-    # def create_item(self, player):
-    #     self.player = player(input('What did you find? '), {self.name})
-    #     return player
-
 class Potion(Item):
     def __init__(self, name, description, color, heal):
         super().__init__(name, description)

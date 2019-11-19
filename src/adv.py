@@ -40,7 +40,6 @@ room['treasure'].s_to = room['narrow']
 rock = Item('rock', 'Just a rock.. or is it?!')
 crown = Item('crown', 'It\'s a golden crown!')
 magic_wand = Item('magic_wand', 'A magic wand appeared!')
-
 potion = Potion('purple_potion', 'heals 25 HP', "purple", 50)
 
 room['foyer'].items.append(potion)
