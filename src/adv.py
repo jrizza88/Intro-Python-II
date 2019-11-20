@@ -81,7 +81,6 @@ while player_selection != "q" or player_selection != "quit":
             print('thanks for playing!')
         else: 
             print('not a valid room input')
-        
     except ValueError:
         print("ValueError!! User input has to be string, not an integer")
 
