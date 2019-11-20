@@ -6,10 +6,4 @@ class Player:
         self.current_room = current_room
 
     def __str__(self):
-        return f'Our adventurer {self.name} is currently in room {self.current_room}'
-
-    def room_info(self):
-        return f'player class has: Player({self.name}), Room name:{self.current_room.name}. description: {self.current_room.description}'
-
-    
-# print(Player.room_info)
+        return f'Our adventurer {self.name} is currently in {self.current_room}'
