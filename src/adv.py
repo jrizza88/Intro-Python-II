@@ -44,6 +44,8 @@ player = Player(input('Input name: '), room['outside'])
 # listing the player name after player gets created
 print(f'Player\'s name is: {player.name}')
 print(f'Player is in room: {player.current_room_player.name}')
+
+print(f'player.room_info()')
 # Write a loop that:
 #
 # * Prints the current room name
@@ -55,3 +57,32 @@ print(f'Player is in room: {player.current_room_player.name}')
 # Print an error message if the movement isn't allowed.
 #
 # If the user enters "q", quit the game.
+
+player_selection = ''
+
+#LOOP
+while player_selection != "q" or player_selection != "quit":
+
+    # player.room_info()
+    # READ
+    player_selection = input('Select a direction (n, e, s, w or q to quit)')
+    # EVALUATE
+    try: 
+        player_selection = str(player_selection)
+        if player_selection == "n" or player_selection == "north":
+            print('player pressed north')
+        elif player_selection == "e" or player_selection == "east":
+            print('player pressed east')
+        elif player_selection == "s" or player_selection == "south":
+            print('player pressed south')
+        elif player_selection == "w" or player_selection == "west":
+            print('player pressed west')
+        elif player_selection == "q" or player_selection == "quit":
+            print('thanks for playing!')
+        else: 
+            print('not a valid room input')
+        
+    except ValueError:
+        print("ValueError!! User input has to be string, not an integer")
+
+
