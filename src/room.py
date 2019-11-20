@@ -14,5 +14,5 @@ class Room:
         return f'room: {self.name}, description: {self.description}'
 
     def desc_only(self):
-        return f'description is: {self.description}'
+        return f'Room description is: {self.description}'
 

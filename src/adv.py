@@ -94,5 +94,3 @@ while True:
             print('not a valid room input')
     except ValueError:
         print("ValueError!! User input has to be string, not an integer")
-
-
