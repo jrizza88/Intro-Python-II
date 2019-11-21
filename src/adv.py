@@ -23,6 +23,12 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
+golden_rock =  Item('golden rock!', 'This might be special.. right?')
+
+item = {
+    'rock': Item('Rock', """You find a random rock and pick it up in case you need it for later"")
+}
+
 
 # Link rooms together
 
