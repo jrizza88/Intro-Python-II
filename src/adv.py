@@ -1,6 +1,7 @@
 from room import Room
 from player import Player
 from item import Item
+from item import Heal
 
 # Declare all the rooms
 
@@ -23,13 +24,6 @@ chamber! Sadly, it has already been completely emptied by
 earlier adventurers. The only exit is to the south."""),
 }
 
-golden_rock =  Item('golden rock!', 'This might be special.. right?')
-
-item = {
-    'rock': Item('Rock', """You find a random rock and pick it up in case you need it for later""")
-}
-
-
 # Link rooms together
 
 room['outside'].n_to = room['foyer']
@@ -40,6 +34,24 @@ room['overlook'].s_to = room['foyer']
 room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
+
+
+golden_rock =  Item('golden rock!', 'This might be special.. right?')
+rock = Item('random rock', 'does this have any use?')
+sword = Item('sword', 'a plain sword, looks useful')
+apple = Heal('apple', 'an apple, eat it to gain HP', 5)
+potion = Heal('potion', 'a green potion, heals 20HP', 10)
+
+# item = {
+#     'rock': Item('Rock', """You find a random rock and pick it up in case you need it for later""")
+# }
+
+room['treasure'].items.append(golden_rock)
+room['foyer'].items.append(rock)
+room['overlook'].items.append(sword)
+room['overlook'].items.append(apple)
+room['foyer'].items.append(potion)
+
 
 #
 # Main
