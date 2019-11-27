@@ -36,21 +36,30 @@ room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
 
-golden_rock =  Item('golden rock!', 'This might be special.. right?')
-rock = Item('random rock', 'does this have any use?')
-sword = Item('sword', 'a plain sword, looks useful')
-apple = Heal('apple', 'an apple, eat it to gain HP', 5)
-potion = Heal('potion', 'a green potion, heals 20HP', 10)
+# golden_rock =  Item('golden rock!', 'This might be special.. right?')
+# rock = Item('random rock', 'is there  any use?')
+# sword = Item('sword', 'a plain sword, looks useful')
+# apple = Heal('apple', 'an apple, eat it to gain HP', 5)
+# potion = Heal('potion', 'a green potion, heals 20HP', 10)
 
-# item = {
-#     'rock': Item('Rock', """You find a random rock and pick it up in case you need it for later""")
-# }
+item = {
+    'rock': Item('Rock', """You find a random rock and pick it up in case you need it for later"""),
+    'golden_rock': Item('golden rock!', 'This might be special.. right?'),
+    'sword':  Item('sword', 'a plain sword, looks useful'),
+    'apple': Heal('apple', 'an apple, eat it to gain HP', 5),
+    'potion':  Heal('potion', 'a green potion, heals 20HP', 10)
+}
 
-room['treasure'].items.append(golden_rock)
-room['foyer'].items.append(rock)
-room['overlook'].items.append(sword)
-room['overlook'].items.append(apple)
-room['foyer'].items.append(potion)
+
+# room['treasure'].items.append(golden_rock)
+# room['foyer'].items.append(rock)
+# room['overlook'].items.append(sword)
+# room['overlook'].items.append(apple)
+# room['foyer'].items.append(potion)
+
+room['treasure'].items = [item["golden_rock"]]
+room['overlook'].items = [item["sword"], item['apple']]
+room['foyer'].items = [item['rock'], item['potion']]
 
 
 #
@@ -59,10 +68,12 @@ room['foyer'].items.append(potion)
 
 # Make a new player object that is currently in the 'outside' room.
 player = Player(input('Input name: '), room['outside'])
-
+# player.items = [items['rock']]
 # listing the player name after player gets created
 print(f'Player\'s name is: {player.name}')
 print(f'Player is in room: {player.current_room.name}')
+print(f'Items in {player.current_room.name}: {player.current_room.check_item}')
+print(f'items in this room????: {player.current_room.print_item()}')
 print(player.current_room.desc_only())
 
 # Write a loop that:
@@ -83,32 +94,41 @@ player_selection = ""
 while True:
 
     print(player)
+    # player.current_room.check_items3([])
+    # player.current_room.check_item2([])
+    player.current_room.print_item()
+    player.current_room.check_item([])
+    player.player_inventory()
     # print(player.room_info())
     
     # READ
     player_selection = input('Select a direction (n, e, s, w or q to quit)')
+    # .strip().split(' ')
     # EVALUATE
     try: 
         player_selection = str(player_selection)
-        if player_selection == "n" or player_selection == "north":
-            if player.current_room.n_to is not None:
-                player.current_room = player.current_room.n_to
-            print('player pressed north')
-        elif player_selection == "e" or player_selection == "east":
-            if player.current_room.e_to is not None:
-                player.current_room = player.current_room.e_to
-            print('player pressed east')
-        elif player_selection == "s" or player_selection == "south":
-            if player.current_room.s_to is not None:
-                player.current_room = player.current_room.s_to
-            print('player pressed south')
-        elif player_selection == "w" or player_selection == "west":
-            if player.current_room.w_to is not None:
-                player.current_room = player.current_room.w_to
-            print('player pressed west')
-        elif player_selection == "q" or player_selection == "quit":
-            print('thanks for playing!')
-            break
+        if len(player_selection) == 1:
+            if player_selection == "n" or player_selection == "north":
+                if player.current_room.n_to is not None:
+                    player.current_room = player.current_room.n_to
+                print('player pressed north')
+            elif player_selection == "e" or player_selection == "east":
+                if player.current_room.e_to is not None:
+                    player.current_room = player.current_room.e_to
+                print('player pressed east')
+            elif player_selection == "s" or player_selection == "south":
+                if player.current_room.s_to is not None:
+                    player.current_room = player.current_room.s_to
+                print('player pressed south')
+            elif player_selection == "w" or player_selection == "west":
+                if player.current_room.w_to is not None:
+                    player.current_room = player.current_room.w_to
+                print('player pressed west')
+            elif player_selection == "q" or player_selection == "quit":
+                print('thanks for playing!')
+                break
+        elif len(player_selection) == 2:
+            print('hello!')
         else: 
             print('not a valid room input')
     except ValueError:
