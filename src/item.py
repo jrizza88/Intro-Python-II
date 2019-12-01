@@ -5,7 +5,13 @@ class Item:
         self.description = description
     
     def __str__(self):
-        return f'item {self.name} is {self.description}'
+        return f'{self.name}:---- {self.description}'
+
+    def name_only(self):
+        return f'{self.name}'
+
+    def desc_only(self):
+        return f'{self.description}'
 
 
 class Heal(Item):
@@ -13,6 +19,9 @@ class Heal(Item):
         super().__init__(name, description)
         self.health_points = health_points
 
+    def name_only(self):
+        return f'{self.name}, heal item value: {self.health_points}'
+
     def __str__(self):
-        return f'potion {self.name} is {self.description} and have a HP of {self.health_points}'
+        return f'{self.name}: {self.description} and has a HP of {self.health_points}'
 

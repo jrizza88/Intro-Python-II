@@ -14,7 +14,7 @@ class Room:
     def __str__(self):
         output = f'room: {self.name}, description: {self.description} \n'
         output += f' \n List of items in room: {self.print_item()} \n'
-        # output += f'items in this room: {self.check_item()}'
+        #output += f'items in this room: {self.check_item()}'
         return output
         # output += f'Here are the following items in this room:'
         # i = 0 
@@ -37,25 +37,23 @@ class Room:
     def check_items3(self, item):
         for i in self.items:
             if i == item:
-                print(i.name)
                 # print(i)
                 # print(item)
-                # print(self.items)
+                print(f'Here are the items: {self.items.print_item}')
                 return True
             else:
-                print(i.name)
                 # print(i)
                 # print(item)
-                # print(self.items)
+                print(self.items)
                 return False
 
     def check_item(self, item):
         for i in self.items:
-            if i.name != item: 
+            if i != item: 
                 print(f'There are no items original')               
                 return False
             else:
-                print(f'Checking items: {self.items[i].name}')
+                print(f'Checking items: {self.items[i].item}')
                 return True
 
     def print_item(self):
@@ -64,8 +62,8 @@ class Room:
             print(output)
             return output
         else:
-            # output = f'\n Inventory for print_item: '
-            output = ', '.join([str(i) for i in self.items])
+            # output = f'\n name --- {self.items}, -- name '
+            output = ';\n '.join([str(i) for i in self.items])
             return output
 
     # def items_list(self):

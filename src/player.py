@@ -14,8 +14,8 @@ class Player:
         return f'Our adventurer {self.name} is currently in {self.current_room}'
 
     def add_item(self):
-        self.items.append(self.current_room.items)
-        self.items.remove(self.current_room.drop_item)
+        self.items.append(self.current_room.items())
+        self.items.remove(self.current_room.drop_item())
         print(f'you have picked up {self.current_room.items}')
 
     def drop_item(self):

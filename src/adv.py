@@ -57,9 +57,10 @@ item = {
 # room['overlook'].items.append(apple)
 # room['foyer'].items.append(potion)
 
-room['treasure'].items = [item["golden_rock"]]
-room['overlook'].items = [item["sword"], item['apple']]
-room['foyer'].items = [item['rock'], item['potion']]
+room['treasure'].items = [item["golden_rock"].name_only()]
+room['overlook'].items = [item["sword"], item['apple'].name_only()]
+room['foyer'].items = [item['rock'].name_only(), item['potion'].name_only()]
+room['narrow'].items = [item['potion'].name_only()]
 
 
 #
@@ -72,8 +73,8 @@ player = Player(input('Input name: '), room['outside'])
 # listing the player name after player gets created
 print(f'Player\'s name is: {player.name}')
 print(f'Player is in room: {player.current_room.name}')
-print(f'Items in {player.current_room.name}: {player.current_room.check_item}')
-print(f'items in this room????: {player.current_room.print_item()}')
+print(f'Items in {player.current_room.name}: {player.current_room.check_item([])}')
+# print(f'items in this room????: {player.current_room.print_item()}')
 print(player.current_room.desc_only())
 
 # Write a loop that:
@@ -96,8 +97,13 @@ while True:
     print(player)
     # player.current_room.check_items3([])
     # player.current_room.check_item2([])
-    player.current_room.print_item()
-    player.current_room.check_item([])
+    print(f'Player is in room: {player.current_room.name}')
+    print(f'Items in {player.current_room.name}: {player.current_room.print_item()}')
+    # print(f'Description of items: {player.current_room.desc_only()}')
+    # print(f'items in this room????: {player.current_room.print_item()}')
+    print(player.current_room.desc_only())
+    player.current_room.print_item
+    player.current_room.check_items3([])
     player.player_inventory()
     # print(player.room_info())
     
