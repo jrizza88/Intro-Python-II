@@ -43,11 +43,11 @@ room['treasure'].s_to = room['narrow']
 # potion = Heal('potion', 'a green potion, heals 20HP', 10)
 
 item = {
-    'rock': Item('Rock', """You find a random rock and pick it up in case you need it for later"""),
+    'rock': Item('rock', """You find a random rock and pick it up in case you need it for later"""),
     'golden_rock': Item('golden rock!', 'This might be special.. right?'),
     'sword':  Item('sword', 'a plain sword, looks useful'),
     'apple': Heal('apple', 'an apple, eat it to gain HP', 5),
-    'potion':  Heal('potion', 'a green potion, heals 20HP', 10)
+    'potion':  Heal('potion', 'a green potion, heals 10HP', 10)
 }
 
 
@@ -58,7 +58,7 @@ item = {
 # room['foyer'].items.append(potion)
 
 room['treasure'].items = [item["golden_rock"].name_only()]
-room['overlook'].items = [item["sword"], item['apple'].name_only()]
+room['overlook'].items = [item["sword"].name_only(), item['apple'].name_only()]
 room['foyer'].items = [item['rock'].name_only(), item['potion'].name_only()]
 room['narrow'].items = [item['potion'].name_only()]
 
@@ -103,38 +103,59 @@ while True:
     # print(f'items in this room????: {player.current_room.print_item()}')
     print(player.current_room.desc_only())
     player.current_room.print_item
-    player.current_room.check_items3([])
+    # player.current_room.check_items3([])
     player.player_inventory()
     # print(player.room_info())
     
     # READ
-    player_selection = input('Select a direction (n, e, s, w or q to quit)')
+    player_selection = input('Select a direction (n, e, s, w or q to quit), you can pick up items with get and drop too or enter to skip ').strip().split(' ')
     # .strip().split(' ')
     # EVALUATE
     try: 
-        player_selection = str(player_selection)
+        # player_selection = str(player_selection)
         if len(player_selection) == 1:
-            if player_selection == "n" or player_selection == "north":
+            if player_selection[0] == "n" or player_selection[0] == "north":
                 if player.current_room.n_to is not None:
                     player.current_room = player.current_room.n_to
                 print('player pressed north')
-            elif player_selection == "e" or player_selection == "east":
+            elif player_selection[0] == "e" or player_selection[0] == "east":
                 if player.current_room.e_to is not None:
                     player.current_room = player.current_room.e_to
                 print('player pressed east')
-            elif player_selection == "s" or player_selection == "south":
+            elif player_selection[0] == "s" or player_selection[0] == "south":
                 if player.current_room.s_to is not None:
                     player.current_room = player.current_room.s_to
                 print('player pressed south')
-            elif player_selection == "w" or player_selection == "west":
+            elif player_selection[0] == "w" or player_selection[0] == "west":
                 if player.current_room.w_to is not None:
                     player.current_room = player.current_room.w_to
                 print('player pressed west')
-            elif player_selection == "q" or player_selection == "quit":
+            elif player_selection[0] == "i" or player_selection[0] == "inventory":
+                print(player.current_room.player_inventory())
+                print('inventory')
+            elif player_selection[0] == "q" or player_selection[0] == "quit":
                 print('thanks for playing!')
                 break
+            else: 
+                print('please print valid key.. ')
         elif len(player_selection) == 2:
-            print('hello!')
+            if player_selection[0] == 'get':
+                for i in player.current_room.items:
+            
+                    print('item object', i)
+                    # print(i.name)
+                    if i == player_selection[1]:
+                        player.current_room.drop_item(i)
+                        player.current_room.add_item(i)
+                        player.add_item()
+            elif player_selection[0] == 'drop':
+                for i in player.current_room.items:
+                    print('item object', i)
+                    # print(i.name)
+                    if i == player_selection[1]:
+                        player.current_room.drop_item(i)
+                        player.current_room.add_item(i)
+                        player.drop_item()
         else: 
             print('not a valid room input')
     except ValueError:

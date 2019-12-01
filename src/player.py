@@ -13,9 +13,18 @@ class Player:
     def __str__(self):
         return f'Our adventurer {self.name} is currently in {self.current_room}'
 
+    # def get_item(self):
+    #     for item in self.items:
+    #         print(item)
+    #         self.items.append(item)
+    #     return None
+    def get_item(self):
+        if self.current_room.items:
+            return f'there are {self.current_room.items} here.'
+
     def add_item(self):
-        self.items.append(self.current_room.items())
-        self.items.remove(self.current_room.drop_item())
+        self.items.append(self.current_room.items)
+        self.items.remove(self.current_room.drop_item)
         print(f'you have picked up {self.current_room.items}')
 
     def drop_item(self):

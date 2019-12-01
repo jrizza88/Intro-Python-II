@@ -83,6 +83,17 @@ class Room:
         #         i += 1
         # return output
         
+    def add_item(self, item):
+        self.items.append(item)
+
+    def drop_item(self, item):
+        self.items.remove(item)
+
+    def get_item(self, item_name):
+        for item in self.items:
+            if item.name == item_name:
+                return item
+        return None
 
     def desc_only(self):
         return f'Room description is: {self.description}'
